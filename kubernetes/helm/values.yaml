@@ -9,8 +9,8 @@ replicaCount: 1
 #  tag: stable
 #  pullPolicy: IfNotPresent
 #
-#service:
-#  type: ClusterIP
+service:
+  type: NodePort
 #  port: 80
 #
 #ingress:
