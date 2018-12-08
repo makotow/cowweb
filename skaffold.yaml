@@ -2,7 +2,7 @@ apiVersion: skaffold/v1alpha2
 kind: Config
 build:
   artifacts:
-  - imageName: docker.io/hhayakaw/cowweb
+  - imageName: docker.io/makotow/cowweb
     workspace: .
     docker:
       dockerfilePath: ./kubernetes/container/Dockerfile_dev
@@ -15,7 +15,7 @@ deploy:
       chartPath: kubernetes/helm
       namespace: cowweb-dev
       values:
-        image: docker.io/hhayakaw/cowweb
+        image: docker.io/makotow/cowweb
 #      valuesFilePath: kubernetes/dev/helm-values.yaml
       setValues:
         replicaCount: 1
@@ -29,7 +29,7 @@ profiles:
   - name: release
     build:
       artifacts:
-      - imageName: docker.io/hhayakaw/cowweb
+      - imageName: docker.io/makotow/cowweb
         workspace: .
         docker:
           dockerfilePath: ./kubernetes/container/Dockerfile_release
@@ -44,7 +44,7 @@ profiles:
           chartPath: kubernetes/helm
           namespace: cowweb-release
           values:
-            image: docker.io/hhayakaw/cowweb
+            image: docker.io/makotow/cowweb
           setValues:
             replicaCount: 2
             ingress.enabled: true
