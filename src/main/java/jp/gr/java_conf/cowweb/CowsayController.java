@@ -42,7 +42,7 @@ public class CowsayController {
      *
      * @return a reply message that indicate the number of access.
      */
-    @RequestMapping("/hello", method = RequestMethod.GET))
+    @RequestMapping("/hello")
     public String hello() {
         String reply = "Hello! You are the " + addOrdinal(counter.getCount()) + " visitor!!";
         return Cowsay.say(new String[]{"-f", getRandomCowfile(), reply});
@@ -67,7 +67,7 @@ public class CowsayController {
      *
      * @return Cowsay's 'say' message.
      */
-    @RequestMapping("/say", method = RequestMethod.GET))
+    @RequestMapping("/say")
     public String say(@RequestParam(required = false) Optional<String> message, Model model) {
         model.addAttribute("msg", Cowsay.say(new String[]{"-f", getRandomCowfile(), message.orElse("Moo!")}));
         return "say";
@@ -79,7 +79,7 @@ public class CowsayController {
      *
      * @return Cowsay's 'think' message.
      */
-    @RequestMapping("/think", method = RequestMethod.GET))
+    @RequestMapping("/think")
     public String think(@RequestParam(required = false) Optional<String> message) {
         return Cowsay.think(new String[]{"-f", getRandomCowfile(), message.orElse("Moo!")});
     }
