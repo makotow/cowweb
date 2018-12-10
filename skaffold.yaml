@@ -49,5 +49,5 @@ profiles:
             replicaCount: 2
             ingress.enabled: false
             http.port: 80
-            http.targetPort:
+            http.targetPort: 8080
             debug.enabled: false
