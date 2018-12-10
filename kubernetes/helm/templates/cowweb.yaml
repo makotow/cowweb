@@ -3,23 +3,28 @@ kind: Service
 metadata:
   name: cowweb
 spec:
-  type: {{ if .Values.ingress.enabled }}ClusterIP{{ else }}NodePort{{ end }}
+#  type: {{ if .Values.ingress.enabled }}ClusterIP{{ else }}NodePort{{ end }}
+  type: LoadBalancer
   selector:
     app: cowweb
   ports:
-  - name: http
-    {{ if .Values.ingress.enabled }}
-    port: {{ .Values.http.port | default 80 }}
-    targetPort: {{ .Values.http.targetPort | default 8080 }}
-    {{ else }}
-    port: {{ .Values.http.port | default 8080 }}
-    nodePort: {{ .Values.http.nodePort | default 30080 }}
-    {{ end }}
-    {{ if .Values.debug.enabled }}
-  - name: debug
-    port: {{ .Values.debug.port | default 8081 }}
-    nodePort: {{ .Values.debug.nodePort | default 30081 }}
-    {{ end }}
+    - name: http
+      port: {{ .Values.http.port | default 80 }}
+      targetPort: {{ .Values.http.targetPort | default 8080 }}
+#      nodePort: {{ .Values.http.nodePort | default 30080 }}
+#  - name: http
+#    {{ if .Values.ingress.enabled }}
+#    port: {{ .Values.http.port | default 80 }}
+#    targetPort: {{ .Values.http.targetPort | default 8080 }}
+#    {{ else }}
+#    port: {{ .Values.http.port | default 8080 }}
+#    nodePort: {{ .Values.http.nodePort | default 30080 }}
+#    {{ end }}
+#    {{ if .Values.debug.enabled }}
+#  - name: debug
+#    port: {{ .Values.debug.port | default 8081 }}
+#    nodePort: {{ .Values.debug.nodePort | default 30081 }}
+#    {{ end }}
 ---
 apiVersion: apps/v1beta1
 kind: Deployment

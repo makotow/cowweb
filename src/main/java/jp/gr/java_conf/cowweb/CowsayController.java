@@ -69,7 +69,7 @@ public class CowsayController {
     @RequestMapping("/say")
     public String say(@RequestParam(required = false) Optional<String> message, Model model) {
         model.addAttribute("msg", Cowsay.say(new String[]{"-f", getRandomCowfile(), message.orElse("Moo!")}));
-        return "cowsay/say";
+        return "say";
 //        return Cowsay.say(new String[]{"-f", getRandomCowfile(), message.orElse("Moo!")});
     }
 
