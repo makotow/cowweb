@@ -2,6 +2,7 @@ package jp.gr.java_conf.cowweb;
 
 import com.github.ricksbrown.cowsay.Cowsay;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -66,7 +67,7 @@ public class CowsayController {
      * @return Cowsay's 'say' message.
      */
     @RequestMapping("/say")
-    public String say(@RequestParam(required = false) Optional<String> message) {
+    public String say(@RequestParam(required = false) Optional<String> message, Model model) {
         model.addAttribute("msg",Cowsay.say(new String[]{"-f", getRandomCowfile(), message.orElse("Moo!")}));
         return "cowsay/say";
 //        return Cowsay.say(new String[]{"-f", getRandomCowfile(), message.orElse("Moo!")});
