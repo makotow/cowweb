@@ -5,9 +5,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-Cow saying...
 
+<span style="font-size: 26pt; color: blue;">
+Cow saying...
+    <span th:text="${msg}"></span>
 <span th:utext="${msg}">この部分が動的に置き換えられます</span>
+</span>
 
 </body>
 </html>

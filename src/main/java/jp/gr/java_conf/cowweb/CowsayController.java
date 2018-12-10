@@ -27,12 +27,13 @@ public class CowsayController {
     AccessCounter counter;
 
     static {
-        List<String> infelicities = Arrays.asList(new String[]{"head-in", "telebears", "sodomized"});
+//        List<String> infelicities = Arrays.asList(new String[]{"head-in", "telebears", "sodomized"});
         List<String> c = new ArrayList<>();
-        Arrays.stream(Cowsay.say(new String[]{"-l"}).split(br)).forEach(f -> {
-            if (!infelicities.contains(f)) {
+//        Arrays.stream(Cowsay.say(new String[]{"-l"}).split(br)).forEach(f -> {
+        Arrays.stream(Cowsay.say(new String[]{"-l"})).forEach(f -> {
+//            if (!infelicities.contains(f)) {
                 c.add(f);
-            }
+//            }
         });
         cowfiles = Collections.unmodifiableList(c);
     }
