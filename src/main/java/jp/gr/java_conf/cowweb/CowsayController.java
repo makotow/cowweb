@@ -46,7 +46,6 @@ public class CowsayController {
     public String say(@RequestParam(required = false) Optional<String> message, Model model) {
         model.addAttribute("msg", Cowsay.say(new String[]{"--html", "-f", getRandomCowfile(), message.orElse("Moo!")}));
         return "say";
-//        return Cowsay.say(new String[]{"-f", getRandomCowfile(), message.orElse("Moo!")});
     }
 
     private static String getRandomCowfile() {
