@@ -47,6 +47,9 @@ profiles:
             image: docker.io/makotow/cowweb
           setValues:
             replicaCount: 2
+            service.type: LoadBalancer
+#            service.type: NodePort
+#            service.port: 80
             ingress.enabled: true
             http.port: 80
             http.targetPort:
