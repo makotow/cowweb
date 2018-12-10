@@ -27,13 +27,12 @@ public class CowsayController {
     AccessCounter counter;
 
     static {
-//        List<String> infelicities = Arrays.asList(new String[]{"head-in", "telebears", "sodomized"});
+        List<String> infelicities = Arrays.asList(new String[]{"head-in", "telebears", "sodomized"});
         List<String> c = new ArrayList<>();
-//        Arrays.stream(Cowsay.say(new String[]{"-l"}).split(br)).forEach(f -> {
-        Arrays.stream(Cowsay.say(new String[]{"-l"})).forEach(f -> {
-//            if (!infelicities.contains(f)) {
+        Arrays.stream(Cowsay.say(new String[]{"-l"}).split(br)).forEach(f -> {
+            if (!infelicities.contains(f)) {
                 c.add(f);
-//            }
+            }
         });
         cowfiles = Collections.unmodifiableList(c);
     }
@@ -45,7 +44,7 @@ public class CowsayController {
      */
     @RequestMapping("/cowsay")
     public String say(@RequestParam(required = false) Optional<String> message, Model model) {
-        model.addAttribute("msg", Cowsay.say(new String[]{"-f", getRandomCowfile(), message.orElse("Moo!")}));
+        model.addAttribute("msg", Cowsay.say(new String[]{"--html", "-f", getRandomCowfile(), message.orElse("Moo!")}));
         return "say";
 //        return Cowsay.say(new String[]{"-f", getRandomCowfile(), message.orElse("Moo!")});
     }
