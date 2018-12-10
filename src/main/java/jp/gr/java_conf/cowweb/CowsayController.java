@@ -2,6 +2,7 @@ package jp.gr.java_conf.cowweb;
 
 import com.github.ricksbrown.cowsay.Cowsay;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +15,7 @@ import java.util.*;
  *
  * @author hhiroshell
  */
-@RestController
+@Controller
 @RequestMapping("/cowsay")
 public class CowsayController {
 
@@ -41,7 +42,7 @@ public class CowsayController {
      *
      * @return a reply message that indicate the number of access.
      */
-    @RequestMapping("/hello")
+    @RequestMapping("/hello", method = RequestMethod.GET))
     public String hello() {
         String reply = "Hello! You are the " + addOrdinal(counter.getCount()) + " visitor!!";
         return Cowsay.say(new String[]{"-f", getRandomCowfile(), reply});
@@ -66,7 +67,7 @@ public class CowsayController {
      *
      * @return Cowsay's 'say' message.
      */
-    @RequestMapping("/say")
+    @RequestMapping("/say", method = RequestMethod.GET))
     public String say(@RequestParam(required = false) Optional<String> message, Model model) {
         model.addAttribute("msg", Cowsay.say(new String[]{"-f", getRandomCowfile(), message.orElse("Moo!")}));
         return "say";
@@ -78,7 +79,7 @@ public class CowsayController {
      *
      * @return Cowsay's 'think' message.
      */
-    @RequestMapping("/think")
+    @RequestMapping("/think", method = RequestMethod.GET))
     public String think(@RequestParam(required = false) Optional<String> message) {
         return Cowsay.think(new String[]{"-f", getRandomCowfile(), message.orElse("Moo!")});
     }
