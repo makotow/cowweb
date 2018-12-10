@@ -16,7 +16,7 @@ import java.util.*;
  * @author hhiroshell
  */
 @Controller
-@RequestMapping("/cowsay")
+@RequestMapping("/")
 public class CowsayController {
 
     private static final String br = System.getProperty("line.separator");
@@ -37,66 +37,19 @@ public class CowsayController {
         cowfiles = Collections.unmodifiableList(c);
     }
 
-    /**
-     * Say hello and get a reply.
-     *
-     * @return a reply message that indicate the number of access.
-     */
-    @RequestMapping("/hello")
-    public String hello() {
-        String reply = "Hello! You are the " + addOrdinal(counter.getCount()) + " visitor!!";
-        return Cowsay.say(new String[]{"-f", getRandomCowfile(), reply});
-    }
-
-    private String addOrdinal(Integer num) {
-        String ordinal;
-        if ((num % 10 == 1) && (num % 100 != 11)) {
-            ordinal = num + "st";
-        } else if ((num % 10 == 2) && (num % 100 != 12)) {
-            ordinal = num + "nd";
-        } else if ((num % 10 == 3) && (num % 100 != 13)) {
-            ordinal = num + "rd";
-        } else {
-            ordinal = num + "th";
-        }
-        return ordinal;
-    }
-
-    /**
+    /*
      * Return cowsay's 'say' message.
      *
      * @return Cowsay's 'say' message.
      */
-    @RequestMapping("/say")
+    @RequestMapping("/cowsay")
     public String say(@RequestParam(required = false) Optional<String> message, Model model) {
         model.addAttribute("msg", Cowsay.say(new String[]{"-f", getRandomCowfile(), message.orElse("Moo!")}));
         return "say";
 //        return Cowsay.say(new String[]{"-f", getRandomCowfile(), message.orElse("Moo!")});
     }
 
-    /**
-     * Return cowsay's 'think' message.
-     *
-     * @return Cowsay's 'think' message.
-     */
-    @RequestMapping("/think")
-    public String think(@RequestParam(required = false) Optional<String> message) {
-        return Cowsay.think(new String[]{"-f", getRandomCowfile(), message.orElse("Moo!")});
-    }
-
     private static String getRandomCowfile() {
         return cowfiles.get(new Random().nextInt(cowfiles.size()));
     }
-
-    /**
-     * Send back a fixed String.
-     *
-     * @return Send back a fixed String.
-     */
-    @RequestMapping("/ping")
-    public String ping() {
-        System.out.println("I'm working...");
-        return "I'm working...";
-    }
-
 }
