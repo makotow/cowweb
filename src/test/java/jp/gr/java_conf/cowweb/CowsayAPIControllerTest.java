@@ -38,7 +38,7 @@ public class CowsayAPIControllerTest {
         mockMvc.perform(get("/cowsay/ping"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("text/plain;charset=UTF-8"))
-                .andExpect(content().string("I'm working..."));
+                .andExpect(content().string("I'm working"));
     }
 
 }
